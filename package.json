@@ -1,0 +1,36 @@
+{
+	"name": "stat-dir-watcher",
+	"version": "1.0.0-beta.1",
+	"description": "A recursive directory watcher using stats",
+	"main": "index.js",
+	"scripts": {
+		"test": "mocha",
+		"test:all": "TEST_EVERYTHING=y mocha",
+		"test:cov": "nyc --check-coverage --lines 100 --functions 100 --branches 100 --statements 100 mocha",
+		"test:final": "eslint . && npm run test:cov",
+		"test:lint": "eslint .",
+		"ci:start": "npm run test:final",
+		"ci:after": "nyc report --reporter=text-lcov | coveralls"
+	},
+	"keywords": [
+		"file",
+		"directory",
+		"recursive",
+		"stat"
+	],
+	"author": "Aritz Beobide-Cardinal <aritz@aritzcracker.ca>",
+	"license": "GPL-3.0",
+	"bugs": {
+		"url": "https://github.com/ARitz-Cracker/stat-dir-watcher/issues"
+	},
+	"homepage": "https://github.com/ARitz-Cracker/stat-dir-watcher",
+	"dependencies": {},
+	"devDependencies": {
+		"chai": "^4.2.0",
+		"chai-as-promised": "^7.1.1",
+		"chai-eventemitter": "^1.1.1",
+		"eslint": "^7.15.0",
+		"mocha": "^8.2.1",
+		"nyc": "^15.1.0"
+	}
+}
