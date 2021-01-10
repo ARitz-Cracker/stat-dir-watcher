@@ -1,6 +1,6 @@
 {
 	"name": "stat-dir-watcher",
-	"version": "1.0.0-beta.1",
+	"version": "1.0.0-beta.2",
 	"description": "A recursive directory watcher using stats",
 	"main": "index.js",
 	"scripts": {

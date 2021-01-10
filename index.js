@@ -102,6 +102,7 @@ class StatDirWatcher extends EventEmitter {
 		try{
 			const oldResultStat = this.cachedStats.get(filePath);
 			const stat = await fsp.lstat(filePath);
+			Object.freeze(stat);
 			/** @type {DirWatcherStats} */
 			const resultStat = {};
 			if(stat.isDirectory()){
@@ -136,8 +137,10 @@ class StatDirWatcher extends EventEmitter {
 			}else if(!stat.isDirectory()){
 				throw new Error("this shouldn't happen");
 			}
+			const resultStatCopy = Object.assign({}, resultStat);
+			Object.freeze(resultStatCopy);
 			this._newCachedStats.set(filePath, resultStat);
-			this.emit("preChange", filePath, oldResultStat);
+			this.emit("preChange", filePath, oldResultStat, resultStatCopy);
 		}catch(ex){
 			if(ex.code !== "ENOENT" && ex.code !== "EACCES"){
 				throw ex;
